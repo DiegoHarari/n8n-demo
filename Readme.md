@@ -8,7 +8,7 @@ When a new request comes in via a **Webhook**, n8n:
 2. Sends a **WhatsApp message** (via Twilio or WhatsApp Cloud API).  
 3. Stores the data into a **PostgreSQL (or MySQL) database**.  
 
-This small workflow demonstrates how **communication + persistence** can be combined in just a few nodes.
+This small workflow demonstrates how **communication + persistence** can be combined in just a couple of nodes.
 
 ## 📂 Files
 - `workflow.json`: the workflow export (ready to import in n8n).
