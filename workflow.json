@@ -1,0 +1,59 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "path": "new-lead"
+      },
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "fromEmail": "your@email.com",
+        "toEmail": "={{$json[\"email\"]}}",
+        "subject": "¡Gracias por tu registro!",
+        "text": "Te contactaremos pronto."
+      },
+      "name": "Send Email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 1,
+      "position": [550, 150]
+    },
+    {
+      "parameters": {
+        "from": "whatsapp:+14155238886",
+        "to": "={{$json[\"phone\"]}}",
+        "message": "¡Bienvenido! Hemos recibido tu información."
+      },
+      "name": "Send WhatsApp",
+      "type": "n8n-nodes-base.twilio",
+      "typeVersion": 1,
+      "position": [550, 300]
+    },
+    {
+      "parameters": {
+        "operation": "insert",
+        "table": "leads",
+        "columns": "name,email,phone",
+        "values": "={{$json[\"name\"]}},{{$json[\"email\"]}},{{$json[\"phone\"]}}"
+      },
+      "name": "Insert DB",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 1,
+      "position": [550, 450]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          { "node": "Send Email", "type": "main", "index": 0 },
+          { "node": "Send WhatsApp", "type": "main", "index": 0 },
+          { "node": "Insert DB", "type": "main", "index": 0 }
+        ]
+      ]
+    }
+  }
+}
