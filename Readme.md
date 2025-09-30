@@ -27,6 +27,3 @@ This small workflow demonstrates how **communication + persistence** can be comb
 - Replace `={{$json["email"]}}` and `={{$json["phone"]}}` with the fields coming from your Webhook payload.  
 - Adapt the `Insert DB` node to match your database schema.  
 
----
-
-✨ This example is intentionally simple, but it can be extended into **customer journeys, lead nurturing, or operational automations**.
